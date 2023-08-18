@@ -35,7 +35,7 @@ class CategoryService {
     getCategoryById(id) {
         return this.categories.find((category) => category.id == id);
     }
-    
+
     //U=> Update
     updateCategory(id, name){
         const category = this.getCategoryById(id);
@@ -91,4 +91,10 @@ function findCategory(id) {
 const category = categoriesList.getCategoryById(id);
 
 console.log(category.name);
+}
+
+function editCategory(id, name){
+    categoriesList.updateCategory(id, name);
+
+    console.log(categoriesList.categories);
 }
