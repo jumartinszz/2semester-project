@@ -10,16 +10,21 @@
 </head>
 
 <body>
-<div id="container">
-    <h1>🛍️ Categorias & Produtos</h1>
+    <div id="container">
+        <h1>🛍️ Categorias & Produtos</h1>
 
-<div class="form-container">
-<h2>📁 Criar Categoria</h2>
-<label for="">Nome da categoria:</label>
-<input type="text" required id="categoryNameInput">
-<button onclick="createCategory()" class="btn">Criar Categoria</button>
-</div>
-</div>
+        <div class="form-container">
+            <h2>📁 Criar Categoria</h2>
+            <label for="">Nome da categoria:</label>
+            <input type="text" required id="categoryNameInput">
+            <button onclick="createCategory()" class="btn">Criar Categoria</button>
+        </div>
+
+        <div id="list-container">
+            <h2>📋 Categorias e Produtor</h2>
+            <ul id="categoriesList"></ul>
+        </div>
+    </div>
 
 </body>
 

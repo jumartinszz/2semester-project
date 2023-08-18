@@ -31,13 +31,13 @@ class CategoryService {
         const category = new Category(id, name);
         this.categories.push(category);
     }
-    
+
     getCategoryById(id) {
         return this.categories.find((category) => category.id == id);
     }
 
     //U=> Update
-    updateCategory(id, name){
+    updateCategory(id, name) {
         const category = this.getCategoryById(id);
         category.name = name;
     }
@@ -64,7 +64,7 @@ class ProductService {
         category.products.push(product);
     }
     //R=> Read
-    getProductById(id){
+    getProductById(id) {
         return this.products.find((product) => product.id == id);
     }
 }
@@ -76,6 +76,8 @@ function createCategory() {
     const categoryName = document.getElementById("categoryNameInput").value;
 
     categoriesList.addCategory(categoryName);
+
+    displayCategories();
 
     clearFields();
 
@@ -93,7 +95,7 @@ function createProduct() {
     const productCategory2 = categoriesList.categories[1];
 
     const productName3 = "Harry Potter";
-    const productPrice3= 70;
+    const productPrice3 = 70;
     const productCategory3 = categoriesList.categories[2];
 
     productsList.addProduct(productName1, productPrice1, productCategory1);
@@ -104,31 +106,42 @@ function createProduct() {
 }
 
 function findCategory(id) {
-const category = categoriesList.getCategoryById(id);
+    const category = categoriesList.getCategoryById(id);
 
-// console.log(category.name);
+    // console.log(category.name);
 }
 
-function editCategory(id, name){
+function editCategory(id, name) {
     categoriesList.updateCategory(id, name);
 
     console.log(categoriesList.categories);
 }
 
-function deleteCategory(id){
+function deleteCategory(id) {
     categoriesList.deleteCategory(id);
 
     console.log(categoriesList.categories);
 }
 
-function findProduct(id){
+function findProduct(id) {
     const product = productsList.getProductById(id)
 
     console.log(product.name);
 }
 
-function clearFields(){
-document.getElementById("categoryNameInput").value = "";
+function displayCategories() {
+    let content = "";
+
+    categoriesList.categories.forEach((category) => {
+        content += `<li>${category.name}</li>`;
+    });
+
+    document.getElementById("categoriesList").innerHTML = content;
 }
+
+function clearFields() {
+    document.getElementById("categoryNameInput").value = "";
+}
+
 
 
