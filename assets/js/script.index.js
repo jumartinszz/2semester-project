@@ -66,6 +66,6 @@ function addCar(){
     list.adicionar(carro);
 
     list.car.forEach((cars) =>{
-        console.log(`Marca: ${brand}, Modelo: ${modelo}`)
+        console.log(`Marca: ${cars.brand}, Modelo: ${cars.modelo}`)
     })
 };
