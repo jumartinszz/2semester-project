@@ -64,7 +64,7 @@ class ProductService {
         category.products.push(product);
     }
     //R=> Read
-    getCategoryById(id){
+    getProductById(id){
         return this.products.find((product) => product.id == id);
     }
 }
@@ -86,11 +86,21 @@ function createCategory() {
 }
 
 function createProduct() {
-    const productName = "choco";
-    const productPrice = 50;
-    const productCategory = categoriesList.categories[0];
+    const productName1 = "choco";
+    const productPrice1 = 50;
+    const productCategory1 = categoriesList.categories[0];
 
-    productsList.addProduct(productName, productPrice, productCategory);
+    const productName2 = "Sneakers";
+    const productPrice2 = 60;
+    const productCategory2 = categoriesList.categories[1];
+
+    const productName3 = "Harry Potter";
+    const productPrice3= 70;
+    const productCategory3 = categoriesList.categories[2];
+
+    productsList.addProduct(productName1, productPrice1, productCategory1);
+    productsList.addProduct(productName2, productPrice2, productCategory2);
+    productsList.addProduct(productName3, productPrice3, productCategory3);
 
     // console.log(productsList.products);
 }
@@ -111,6 +121,12 @@ function deleteCategory(id){
     categoriesList.deleteCategory(id);
 
     console.log(categoriesList.categories);
+}
+
+function findProduct(id){
+    const product = productsList.getProductById(id)
+
+    console.log(product.name);
 }
 
 
