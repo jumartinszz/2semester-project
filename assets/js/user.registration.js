@@ -1,10 +1,10 @@
 class User {
-    constructor(fullname, email, dateofbirth, city, telephone, cpf, age, client){
-        this.fullname = fullname;
+    constructor(name, email, dateofbirth, city, phone, cpf, age, client){
+        this.name = name;
         this.email = email;
         this.dateofbirth = dateofbirth;
         this.city = city;
-        this.telephone = telephone;
+        this.phonehone = phone;
         this.cpf = cpf;
         this.age = age;
         this.client = client;
@@ -15,7 +15,23 @@ class userList {
     constructor(){
         this.users = [];
     }
+    addUser(User){
+        this.users.push(User);
+    }
 }
+
+const userList = new UserList();
+
+function createUser(){
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const birthdate = document.getElementById("birthdate").value;
+    const address = document.getElementById("address").value;
+    const phone = document.getElementById("phone").value;
+    const cpf = document.getElementById("cpf").value;
+}
+
+
 
 
 getZodiacSign() {
