@@ -1,3 +1,5 @@
+let haveusers = false;
+
 class User {
     constructor(name, email, birthdate, address, phone, cpf) {
         this.name = name;
@@ -12,12 +14,12 @@ class User {
     }
 
     calculateAge() {
-        const birthDate = document.getElementById("age").value;
-        const personYear = newDate(birthDate).getFullYear();
-        const todayYear = newDate().getFullYear();
-        const personMonth = newDate(birthDate).getMonth() + 1
+        const birthDate = document.getElementById("birthdate").value;
+        const personYear = new Date(birthDate).getFullYear();
+        const todayYear = new Date().getFullYear();
+        const personMonth = new Date(birthDate).getMonth() + 1
 
-        const todayMonth = newDate().getMonth() + 1
+        const todayMonth = new Date().getMonth() + 1
 
         const ageYear = todayYear - personYear;
 
@@ -63,10 +65,10 @@ class User {
     }
 
     isPossibleClient() {
-        if (age < 18 || age > 31){
+        if (age < 18 || age > 31) {
             return "Não"
         }
-        else if (age >= 18 && age <= 31){
+        else if (age >= 18 && age <= 31) {
             return "Sim"
         }
     }
@@ -94,8 +96,9 @@ function createUser() {
     const person = new User(name, email, birthdate, address, phone, cpf);
 
     listPerson.addUser(person);
+    haveusers = true;
 
-    showUsers()
+
     formatedCPF(cpf)
     cleanFields()
 };
@@ -107,21 +110,17 @@ function cleanFields() {
     document.getElementById("address").value = "";
     document.getElementById("phone").value = "";
     document.getElementById("cpf").value = "";
-
 }
 
 function showUsers() {
-    let msg = "";
-    listPerson.users.forEach(user => {
-        msg += `<div>
-            <p>Nome:${user.name}</p>
-            <p>Email${user.email}</p>
-            <p>Data de aniversário:${user.birthdate}</p>
-            <p>Cidade:${user.address}</p>
-            <p>Telefone:${user.phone}</p>
-            <p>CPF:${user.cpf}</p>
-            <p>Possível Cliente:${user.client}</p>`
-    })
+    if (haveusers) {
+        document.getElementById("sub-div").classList.remove("hidden");
+        document.getElementById("title-page").classList.add("hidden");
+        document.getElementById("main-div").classList.add("hidden");
+    }
+    else {
+        sendErrorMsg("Não tem nenhum usuário cadastrado")
+    }
 };
 
 function showRegister() {
