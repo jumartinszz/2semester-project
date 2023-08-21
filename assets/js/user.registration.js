@@ -18,7 +18,6 @@ class User {
         const personYear = new Date(birthDate).getFullYear();
         const todayYear = new Date().getFullYear();
         const personMonth = new Date(birthDate).getMonth() + 1
-
         const todayMonth = new Date().getMonth() + 1
 
         const ageYear = todayYear - personYear;
@@ -65,11 +64,11 @@ class User {
     }
 
     isPossibleClient() {
-        if (age < 18 || age > 31) {
-            return "Não"
-        }
-        else if (age >= 18 && age <= 31) {
+        if (this.age >= 18 && this.age <= 31) {
             return "Sim"
+        }
+        else {
+            return "Não"
         }
     }
 }
@@ -93,24 +92,25 @@ function createUser() {
     const phone = document.getElementById("phone").value;
     const cpf = document.getElementById("cpf").value;
 
+    if(!isAnyInputEmpty()){
+sendErrorMsg ("Todos os campos obrigatórios devem ser preenchidos");
+    } else if (!valida_cpf(cpf)) {
+        sendErrorMsg("CPF inválido")
+        document.getElementById("cpf").value = "";
+    } else if ()
+    
+    
+    
+    
     const person = new User(name, email, birthdate, address, phone, cpf);
 
     listPerson.addUser(person);
     haveusers = true;
 
-
     formatedCPF(cpf)
     cleanFields()
+    valida_cpf
 };
-
-function cleanFields() {
-    document.getElementById("name").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("birthdate").value = "";
-    document.getElementById("address").value = "";
-    document.getElementById("phone").value = "";
-    document.getElementById("cpf").value = "";
-}
 
 function showUsers() {
     if (haveusers) {
@@ -118,17 +118,14 @@ function showUsers() {
         document.getElementById("title-page").classList.add("hidden");
         document.getElementById("main-div").classList.add("hidden");
     }
-    else {
-        sendErrorMsg("Não tem nenhum usuário cadastrado")
-    }
 };
 
 function showRegister() {
     document.getElementById("sub-div").classList.add("hidden");
     document.getElementById("title-page").classList.remove("hidden");
     document.getElementById("main-div").classList.remove("hidden");
-}
 
+}
 
 function formatedCPF(cpf) {
     console.log("Passou pela funcao formatedCPF()");
@@ -138,6 +135,7 @@ function formatedCPF(cpf) {
         + "." + cpfArray[3] + cpfArray[4] + cpfArray[5] + "."
         + cpfArray[6] + cpfArray[7] + cpfArray[8] + "-" + cpfArray[9] + cpfArray[10];
     return cpfFormated;
+
 }
 
 function formatedCellphone(cellphone) {
@@ -195,3 +193,30 @@ function sendErrorMsg(msg) {
         document.getElementById("error-msg").classList.add("hidden");
     }, 4000);
 }
+
+function cleanFields() {
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("birthdate").value = "";
+    document.getElementById("address").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("cpf").value = "";
+}
+ function isAnyInputEmpty(){
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const birthdate = document.getElementById("birthdate").value;
+    const address = document.getElementById("address").value;
+    const phone = document.getElementById("phone").value;
+    const cpf = document.getElementById("cpf").value;
+
+    if(name && email && birthdate && address && phone && cpf){
+        return true;
+    }
+    else {
+        return false;
+    }
+
+ }
+
+
