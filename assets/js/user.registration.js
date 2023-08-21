@@ -1,10 +1,10 @@
 class User {
-    constructor(name, email, dateofbirth, city, phone, cpf, age, client){
+    constructor(name, email, birthdate, address, phone, cpf, age, client) {
         this.name = name;
         this.email = email;
-        this.dateofbirth = dateofbirth;
-        this.city = city;
-        this.phonehone = phone;
+        this.birthdate = birthdate;
+        this.address = address;
+        this.phone = phone;
         this.cpf = cpf;
         this.age = age;
         this.client = client;
@@ -12,68 +12,66 @@ class User {
 }
 
 class userList {
-    constructor(){
+    constructor() {
         this.users = [];
     }
-    addUser(User){
+    addUser(User) {
         this.users.push(User);
     }
 }
 
-const userList = new UserList();
+const listPerson = new userList();
 
-function createUser(){
+function createUser() {
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const birthdate = document.getElementById("birthdate").value;
     const address = document.getElementById("address").value;
     const phone = document.getElementById("phone").value;
     const cpf = document.getElementById("cpf").value;
+
+    const person = new User(name, email, birthdate, address, phone, cpf);
+
+    listPerson.addUser(person);
+
+    showUsers()
+    formatedCPF(cpf)
+    cleanFields()
+};
+
+function cleanFields() {
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("birthdate").value = "";
+    document.getElementById("address").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("cpf").value = "";
+
 }
 
+function showUsers() {
+    let msg = "";
+    listPerson.users.forEach(user => {
+        msg += `<div>
+            <p>Nome:${user.name}</p>
+            <p>Email${user.email}</p>
+            <p>Data de aniversário:${user.birthdate}</p>
+            <p>Cidade:${user.address}</p>
+            <p>Telefone:${user.phone}</p>
+            <p>CPF:${user.cpf}</p>
+            <p>Possível Cliente:${user.client}</p>`
+    })
+};
 
+ 
 
-
-getZodiacSign() {
-    let birthdate = new Date(this.birthdate);
-    let day = birthdate.getDate();
-    let month = birthdate.getMonth() + 1;
-    console.log("Passou pelo getSigno() da class User");
-
-    if ((month == 1 && day <= 20) || (month == 12 && day >= 22)) {
-        return "Capricórnio ♑";
-    } else if ((month == 1 && day >= 21) || (month == 2 && day <= 18)) {
-        return "Aquário ♒";
-    } else if ((month == 2 && day >= 19) || (month == 3 && day <= 20)) {
-        return "Peixes ♓";
-    } else if ((month == 3 && day >= 21) || (month == 4 && day <= 20)) {
-        return "Áries ♈";
-    } else if ((month == 4 && day >= 21) || (month == 5 && day <= 20)) {
-        return "Touro ♉";
-    } else if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) {
-        return "Gêmeos ♊";
-    } else if ((month == 6 && day >= 22) || (month == 7 && day <= 22)) {
-        return "Câncer ♋";
-    } else if ((month == 7 && day >= 23) || (month == 8 && day <= 23)) {
-        return "Leão ♌";
-    } else if ((month == 8 && day >= 24) || (month == 9 && day <= 23)) {
-        return "Virgem ♍";
-    } else if ((month == 9 && day >= 24) || (month == 10 && day <= 23)) {
-        return "Libra ♎";
-    } else if ((month == 10 && day >= 24) || (month == 11 && day <= 22)) {
-        return "Escorpião ♏";
-    } else if ((month == 11 && day >= 23) || (month == 12 && day <= 21)) {
-        return "Sagitário ♐";
-    }
-}
 
 function showRegister() {
     document.getElementById("sub-div").classList.add("hidden");
     document.getElementById("title-page").classList.remove("hidden");
     document.getElementById("main-div").classList.remove("hidden");
-    console.log("Passou pela funcao showRegister()");
-
 }
+
 
 function formatedCPF(cpf) {
     console.log("Passou pela funcao formatedCPF()");
