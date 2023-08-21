@@ -1,36 +1,31 @@
 class User {
-    constructor(name, email, birthdate, address, phone, cpf, age, client) {
+    constructor(name, email, birthdate, address, phone, cpf) {
         this.name = name;
         this.email = email;
         this.birthdate = birthdate;
         this.address = address;
         this.phone = phone;
         this.cpf = cpf;
-        this.age = age;
-        this.client = client;
-    }
-}
-
-class userList {
-    constructor() {
-        this.users = [];
-    }
-    addUser(User) {
-        this.users.push(User);
+        this.age = this.calculateAge();
+        this.sign = this.getZodiacSign();
+        this.client = this.isPossibleClient()
     }
 
     calculateAge() {
         const birthDate = document.getElementById("age").value;
         const personYear = newDate(birthDate).getFullYear();
         const todayYear = newDate().getFullYear();
-        const personMonth = newDate(birthDate).getMonth() +1
+        const personMonth = newDate(birthDate).getMonth() + 1
 
-        const todayMonth = newDate().getMonth() +1
+        const todayMonth = newDate().getMonth() + 1
 
         const ageYear = todayYear - personYear;
 
-        if(personMonth > todayMonth){
-            return ageYear -1
+        if (personMonth > todayMonth) {
+            return ageYear - 1;
+        }
+        else {
+            return ageYear;
         }
     }
 
@@ -68,9 +63,22 @@ class userList {
     }
 
     isPossibleClient() {
-
+        if (age < 18 || age > 31){
+            return "Não"
+        }
+        else if (age >= 18 && age <= 31){
+            return "Sim"
+        }
     }
+}
 
+class userList {
+    constructor() {
+        this.users = [];
+    }
+    addUser(User) {
+        this.users.push(User);
+    }
 }
 
 const listPerson = new userList();
