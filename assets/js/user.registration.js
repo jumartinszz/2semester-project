@@ -18,6 +18,59 @@ class userList {
     addUser(User) {
         this.users.push(User);
     }
+
+    calculateAge() {
+        const birthDate = document.getElementById("age").value;
+        const personYear = newDate(birthDate).getFullYear();
+        const todayYear = newDate().getFullYear();
+        const personMonth = newDate(birthDate).getMonth() +1
+
+        const todayMonth = newDate().getMonth() +1
+
+        const ageYear = todayYear - personYear;
+
+        if(personMonth > todayMonth){
+            return ageYear -1
+        }
+    }
+
+    getZodiacSign() {
+        let birthdate = new Date(this.birthdate);
+        let day = birthdate.getDate();
+        let month = birthdate.getMonth() + 1;
+        console.log("Passou pelo getSigno() da class User");
+
+        if ((month == 1 && day <= 20) || (month == 12 && day >= 22)) {
+            return "Capricórnio ♑";
+        } else if ((month == 1 && day >= 21) || (month == 2 && day <= 18)) {
+            return "Aquário ♒";
+        } else if ((month == 2 && day >= 19) || (month == 3 && day <= 20)) {
+            return "Peixes ♓";
+        } else if ((month == 3 && day >= 21) || (month == 4 && day <= 20)) {
+            return "Áries ♈";
+        } else if ((month == 4 && day >= 21) || (month == 5 && day <= 20)) {
+            return "Touro ♉";
+        } else if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) {
+            return "Gêmeos ♊";
+        } else if ((month == 6 && day >= 22) || (month == 7 && day <= 22)) {
+            return "Câncer ♋";
+        } else if ((month == 7 && day >= 23) || (month == 8 && day <= 23)) {
+            return "Leão ♌";
+        } else if ((month == 8 && day >= 24) || (month == 9 && day <= 23)) {
+            return "Virgem ♍";
+        } else if ((month == 9 && day >= 24) || (month == 10 && day <= 23)) {
+            return "Libra ♎";
+        } else if ((month == 10 && day >= 24) || (month == 11 && day <= 22)) {
+            return "Escorpião ♏";
+        } else if ((month == 11 && day >= 23) || (month == 12 && day <= 21)) {
+            return "Sagitário ♐";
+        }
+    }
+
+    isPossibleClient() {
+
+    }
+
 }
 
 const listPerson = new userList();
@@ -62,9 +115,6 @@ function showUsers() {
             <p>Possível Cliente:${user.client}</p>`
     })
 };
-
- 
-
 
 function showRegister() {
     document.getElementById("sub-div").classList.add("hidden");
