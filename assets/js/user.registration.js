@@ -1,3 +1,22 @@
+class User {
+    constructor(fullname, email, dateofbirth, city, telephone, cpf, age, client){
+        this.fullname = fullname;
+        this.email = email;
+        this.dateofbirth = dateofbirth;
+        this.city = city;
+        this.telephone = telephone;
+        this.cpf = cpf;
+        this.age = age;
+        this.client = client;
+    }
+}
+
+class userList {
+    constructor(){
+        this.users = [];
+    }
+}
+
 
 getZodiacSign() {
     let birthdate = new Date(this.birthdate);
